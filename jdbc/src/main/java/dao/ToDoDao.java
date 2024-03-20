@@ -146,6 +146,23 @@ public class TodoDao {
         return result;
     }
 
+    // 삭제 - DELETE
+    public int delete(String no) {
+        int result = 0;
+
+        con = getConnection();
+        String sql = "DELETE FROM TODOTBL WHERE NO=?";
+        try {
+            pstmt = con.prepareStatement(sql);
+            // ? 해결
+            pstmt.setInt(1, Integer.parseInt(no));
+            result = pstmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     // 4. 자원 정리
     public void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
         try {

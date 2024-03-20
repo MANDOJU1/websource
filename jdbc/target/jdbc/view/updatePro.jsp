@@ -5,7 +5,7 @@
     //한글처리
     request.setCharacterEncoding("utf-8");
     
-    //
+    // value 가 없는 경우 checkbox, radio의 경우에는 on 값을 가지고 오게 됨
     String completed = request.getParameter("completed");
     String description = request.getParameter("description");
     String no = request.getParameter("no");   

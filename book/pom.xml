@@ -14,19 +14,22 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
       <!-- lombok 라이브러리 -->
     <dependency>
     <groupId>org.projectlombok</groupId>
     <artifactId>lombok</artifactId>
     <version>1.18.30</version>
     <scope>provided</scope>
-</dependency>
+  </dependency>
+
     <!-- jsp,servlet 라이브러리 -->
     <dependency>
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
       <version>8.0.1</version>
     </dependency>
+
     <!-- 자바 DB 연동 라이브러리 -->
 <dependency>
     <groupId>com.oracle.database.jdbc</groupId>
@@ -40,6 +43,7 @@
     <artifactId>jstl</artifactId>
     <version>1.2</version>
 </dependency>
+
   </dependencies>
   <build>
     <finalName>ROOT</finalName>

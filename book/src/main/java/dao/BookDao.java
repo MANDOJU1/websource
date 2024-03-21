@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 import dto.BookDto;
 
 public class BookDao {
@@ -28,13 +32,14 @@ public class BookDao {
 
     // 2. 커넥션 열기
     public Connection getConnection() {
-        String url = "jdbc:oracle:thin:@localhost:1521:xe";
-        String user = "c##test2";
-        String password = "test";
-
+        Context initContext;
         try {
-            con = DriverManager.getConnection(url, user, password);
-        } catch (SQLException e) {
+            initContext = new InitialContext();
+            // java:/comp/env : 등록된 이름 관리
+            Context envContext = (Context) initContext.lookup("java:/comp/env");
+            DataSource ds = (DataSource) envContext.lookup("jdbc/myoracle");
+            con = ds.getConnection();
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return con;
@@ -115,7 +120,7 @@ public class BookDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            close(con, pstmt, rs);
+            close(con, pstmt);
         }
 
         return result;
@@ -143,16 +148,72 @@ public class BookDao {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            close(con, pstmt, rs);
+            close(con, pstmt);
         }
 
         return result;
 
     }
 
+    // 검색 기능
+    public List<BookDto> getSearchList(String criteria, String keyword) {
+        List<BookDto> list = new ArrayList<>();
+
+        con = getConnection();
+
+        String sql = "";
+
+        if (criteria.equals("code")) {
+            // 검색기준(criteria)이 code 라면
+            sql = "SELECT * FROM BOOKTBL WHERE code = ? ";
+        } else {
+            // 검색기준이(criteria)이 writer 라면
+            sql = "SELECT * FROM BOOKTBL WHERE writer = ?";
+        }
+
+        try {
+
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, keyword);
+            rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                BookDto dto = new BookDto();
+                dto.setCode(rs.getInt("code"));
+                dto.setTitle(rs.getString("title"));
+                dto.setWriter(rs.getString("writer"));
+                dto.setPrice(rs.getInt("price"));
+
+                list.add(dto);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(con, pstmt, rs);
+        }
+        return list;
+    }
+
     // delete
     public int delete(int code) {
         int result = 0;
+
+        con = getConnection();
+        String sql = "DELETE FROM BOOKTBL WHERE CODE = ? ";
+
+        try {
+            pstmt = con.prepareStatement(sql);
+            // ?
+            pstmt.setInt(1, code);
+            result = pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            close(con, pstmt);
+        }
+
         return result;
     }
 

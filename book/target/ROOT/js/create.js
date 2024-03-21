@@ -2,7 +2,7 @@
 // submit 발생 시
 // submit 기능 중지
 document.querySelector("form").addEventListener("submit", (e) => {
-  e.preventDefault;
+  e.preventDefault();
 
   const code = document.querySelector("#code");
   const title = document.querySelector("#title");

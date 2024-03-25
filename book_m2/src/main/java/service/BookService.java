@@ -3,6 +3,8 @@ package service;
 import java.util.List;
 
 import dto.BookDto;
+import dto.ChangeDto;
+import dto.MemberDto;
 
 public interface BookService {
     // DAO 호출
@@ -18,4 +20,15 @@ public interface BookService {
     boolean update(BookDto insertDto);
 
     boolean delete(int code);
+
+    // member
+
+    MemberDto isLogin(MemberDto loginDto);
+
+    boolean change(ChangeDto changeDto);
+
+    boolean register(MemberDto insertDto);
+
+    boolean leave(String userid);
+
 }

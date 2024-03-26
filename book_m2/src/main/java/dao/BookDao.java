@@ -304,16 +304,17 @@ public class BookDao {
     }
 
     // 회원 탈퇴
-    public int leave(String userid) {
+    public int memberDel(MemberDto delDto) {
         int result = 0;
 
         con = getConnection();
-        String sql = "DELETE FROM MEMBERTBL WHERE userid = ? ";
+        String sql = "DELETE FROM MEMBERTBL WHERE userid = ? AND password";
 
         try {
             pstmt = con.prepareStatement(sql);
             // ?
-            pstmt.setString(1, userid);
+            pstmt.setString(1, delDto.getUserid());
+            pstmt.setString(2, delDto.getPassword());
             result = pstmt.executeUpdate();
 
         } catch (SQLException e) {

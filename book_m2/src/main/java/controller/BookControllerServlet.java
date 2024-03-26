@@ -59,7 +59,7 @@ public class BookControllerServlet extends HttpServlet {
         } else if (cmd.equals("/register.do")) {
             action = new BookRegisterAction("/view/login.jsp");
         } else if (cmd.equals("/leave.do")) {
-            action = new BookLeaveAction("/login.do");
+            action = new BookLeaveAction("/");
         }
 
         // 생성된 action에게 일 시키기(서블릿(~Pro)이 해야했던 일)

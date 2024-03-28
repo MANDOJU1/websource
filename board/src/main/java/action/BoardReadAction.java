@@ -19,6 +19,7 @@ public class BoardReadAction implements Action {
 
         // BoardService list 호출
         BoardService service = new BoardServiceImpl();
+
         BoardDto dto = service.read(bno);
 
         // req 담기

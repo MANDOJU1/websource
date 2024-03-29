@@ -54,4 +54,14 @@ public class BoardServiceImpl implements BoardService {
     public int getTotalRows(String criteria, String keyword) {
         return dao.getRows(criteria, keyword);
     }
+
+    @Override
+    public boolean pwdCheck(BoardDto passDto) {
+        return dao.pwdCheck(passDto) == 1;
+    }
+
+    @Override
+    public boolean deleteAll(int reRef) {
+        return dao.deleteAll(reRef) == 1;
+    }
 }

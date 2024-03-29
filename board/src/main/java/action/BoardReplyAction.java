@@ -1,8 +1,11 @@
 package action;
 
+import java.net.URLEncoder;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dto.BoardDto;
+import dto.SearchDto;
 import lombok.AllArgsConstructor;
 import service.BoardService;
 import service.BoardServiceImpl;
@@ -25,6 +28,12 @@ public class BoardReplyAction implements Action {
         int reLev = Integer.parseInt(req.getParameter("reLev"));
         int reSeq = Integer.parseInt(req.getParameter("reSeq"));
 
+        // page 나누기 개념 추가 후
+        String page = req.getParameter("page");
+        String amount = req.getParameter("amount");
+        String criteria = req.getParameter("criteria");
+        String keyword = URLEncoder.encode(req.getParameter("keyword"), "utf-8");
+
         BoardDto replydDto = new BoardDto();
         replydDto.setName(name);
         replydDto.setTitle(title);
@@ -40,7 +49,10 @@ public class BoardReplyAction implements Action {
         // 성공시 리스트 보여주기
         if (!service.reply(replydDto)) {
             // 실패시 댓글화면 보여주기
-            path = "/qReplyView.do?bno=" + bno;
+            path = "/qReplyView.do?bno=" + bno + "&page=" + page + "&amount=" + amount
+                    + "&criteria=" + criteria + "&keyword=" + keyword;
+        } else {
+            path += "?page=" + page + "&amount=" + amount + "&criteria=" + criteria + "&keyword=" + keyword;
         }
         return new ActionForward(path, true);
     }

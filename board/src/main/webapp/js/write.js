@@ -26,5 +26,7 @@ document.querySelector("#writeForm").addEventListener("submit", (e) => {
   e.target.submit();
 });
 document.querySelector("#list").addEventListener("click", () => {
-  location.href = "/qList.do";
+  // location.href = "/qList.do";
+  // actionForm 보내기
+  document.querySelector("#actionForm").submit();
 });

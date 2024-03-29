@@ -24,4 +24,8 @@ public interface BoardService {
     List<BoardDto> serachList(SearchDto searchDto);
 
     int getTotalRows(String criteria, String keyword);
+
+    boolean pwdCheck(BoardDto passDto);
+
+    boolean deleteAll(int reRef);
 }

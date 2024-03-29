@@ -1,5 +1,7 @@
 package action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dto.BoardDto;
@@ -17,7 +19,8 @@ public class BoardReadAction implements Action {
     public ActionForward execute(HttpServletRequest req) throws Exception {
 
         int bno = Integer.parseInt(req.getParameter("bno"));
-        // page 나누기 개념 추가 후
+
+        // 페이지 나누기 개념 추가 후
         int page = Integer.parseInt(req.getParameter("page"));
         int amount = Integer.parseInt(req.getParameter("amount"));
         String criteria = req.getParameter("criteria");
@@ -25,16 +28,15 @@ public class BoardReadAction implements Action {
 
         SearchDto searchDto = new SearchDto(page, amount, criteria, keyword);
 
-        // BoardService list 호출
+        // BoardService 호출
         BoardService service = new BoardServiceImpl();
 
         BoardDto dto = service.read(bno);
 
-        // req 담기
+        // req 결과 담기
         req.setAttribute("dto", dto);
         req.setAttribute("searchDto", searchDto);
 
         return new ActionForward(path, false);
     }
-
 }

@@ -3,8 +3,8 @@ package dto;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 public class PageDto {
     private int startPage;
     private int endPage;
@@ -29,5 +29,4 @@ public class PageDto {
         this.prev = this.startPage > 1;
         this.next = this.endPage < realEnd;
     }
-
 }

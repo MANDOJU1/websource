@@ -8,17 +8,18 @@ pageEncoding="UTF-8"%> <%@include file="../include/header.jsp"%>
     </div>
     <div style="height:20px"></div>
     <%-- 
-      enctype
+      enctype 
       1) application/x-www-form-urlencoded : 기본값
       2) multipart/form-data : file input type 이 존재할 때
          => request 객체로 처리 불가
 
-         파일 업로드 
+         파일 업로드
          1) 외부 라이브러리 사용
-            - Apache Commons FrileUpload
-         2) 서블릿에서 제공되는 것 사용
+            - Apache Commons FileUpload
+         2) 서블릿 
+
      --%>
-    <form action='<c:url value="/qWrite.do"/>' method="post" role="form" id="writeForm" enctype="multipart/form-data">
+    <form action='<c:url value="/qWrite.do" />' method="post" role="form" id="writeForm" enctype="multipart/form-data">
       <div class="box-body">
         <div class="form-group row">
           <label for="name" class="col-sm-2 col-form-label">작성자</label>
@@ -97,10 +98,10 @@ pageEncoding="UTF-8"%> <%@include file="../include/header.jsp"%>
   <!-- /.box -->
 </section>
 <form action='<c:url value="/qList.do" />' method="get" id="actionForm">
-      <input type="hidden" name="page" value='<%=request.getParameter("page")%>'>
-			<input type="hidden" name="amount" value='<%=request.getParameter("amount")%>'>
-			<input type="hidden" name="criteria" value='<%=request.getParameter("criteria")%>'>
-			<input type="hidden" name="keyword" value='<%=request.getParameter("keyword")%>'>
+  <input type="hidden" name="page" value='<%=request.getParameter("page")%>'>
+  <input type="hidden" name="amount" value='<%=request.getParameter("amount")%>'>
+  <input type="hidden" name="criteria" value='<%=request.getParameter("criteria")%>'>
+  <input type="hidden" name="keyword" value='<%=request.getParameter("keyword")%>'>
 </form>
-<script src='<c:url value="/js/write.js"/>'></script>
+<script src='<c:url value="/js/write.js" />'></script>
 <%@include file="../include/footer.jsp"%>

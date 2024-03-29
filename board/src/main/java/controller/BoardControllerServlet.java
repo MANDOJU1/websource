@@ -36,6 +36,7 @@ public class BoardControllerServlet extends HttpServlet {
 
         // cmd를 가지고 액션 생성
         Action action = null;
+
         if (cmd.equals("/qList.do")) {
             action = new BoardListAction("/view/qna_board_list.jsp");
         } else if (cmd.equals("/qWrite.do")) {
@@ -55,10 +56,9 @@ public class BoardControllerServlet extends HttpServlet {
         } else if (cmd.equals("/qCount.do")) {
             action = new BoardUpdateCountAction("/qRead.do");
         }
-
         // else if (cmd.equals("/qSearch.do")) {
         // action = new BoardSearchAction("/view/qna_board_list.jsp");
-        // } list와 합침
+        // }
 
         // 생성된 action에게 일 시키기(서블릿(~Pro)이 해야했던 일)
         ActionForward af = null;

@@ -7,7 +7,7 @@
 			<h3 class="box-title">Board Modify</h3>
 		</div>
 		<div style="height:20px"></div>
-		<form action='<c:url value="/qUpdate.do"/>' method="post" role="form">
+		<form action='<c:url value="/qUpdate.do" />' method="post" role="form">
 			<div class="box-body">
 				<div class="form-group row">
 					<label for="name" class="col-sm-2 col-form-label">글쓴이</label>
@@ -34,12 +34,13 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="filename" class="col-sm-2 col-form-label" >파일첨부</label>
+					<label for="filename" class="col-sm-2 col-form-label">파일첨부</label>
 					<div class="col-sm-10">
-						<a href='<c:url value="/view/download.jsp?fileName=${dto.attach}" />'>${dto.attach}</a>
+						<a href='<c:url value="/view/download.jsp?fileName=${dto.attach}" />'>${dto.attach}</a>	
 					</div>
 				</div>
 				<div style="height:20px"></div>
+				<input type="hidden" name="bno" value="${dto.bno}">
 				<div class="box-footer text-center">
 					<button type="submit" class="btn btn-primary">수정</button>
 					<button type="button" class="btn btn-danger">목록</button>
@@ -59,5 +60,5 @@
 	<input type="hidden" name="criteria" value="${searchDto.criteria}">
 	<input type="hidden" name="keyword" value="${searchDto.keyword}">
 </form>
-<script src='<c:url value= "/js/modify.js" />'></script>
+<script src='<c:url value="/js/modify.js" />'></script>
 <%@include file="/include/footer.jsp"%>

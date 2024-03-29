@@ -1,6 +1,7 @@
 package action;
 
 import java.net.URLEncoder;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,36 +26,35 @@ public class BoardReplyAction implements Action {
         // 부모 정보
         int bno = Integer.parseInt(req.getParameter("bno"));
         int reRef = Integer.parseInt(req.getParameter("reRef"));
-        int reLev = Integer.parseInt(req.getParameter("reLev"));
         int reSeq = Integer.parseInt(req.getParameter("reSeq"));
+        int reLev = Integer.parseInt(req.getParameter("reLev"));
 
-        // page 나누기 개념 추가 후
+        // 페이지 나누기 개념 추가 후
         String page = req.getParameter("page");
         String amount = req.getParameter("amount");
         String criteria = req.getParameter("criteria");
         String keyword = URLEncoder.encode(req.getParameter("keyword"), "utf-8");
 
-        BoardDto replydDto = new BoardDto();
-        replydDto.setName(name);
-        replydDto.setTitle(title);
-        replydDto.setContent(content);
-        replydDto.setPassword(password);
-        replydDto.setReRef(reRef);
-        replydDto.setReLev(reLev);
-        replydDto.setReSeq(reSeq);
+        BoardDto replyDto = new BoardDto();
+        replyDto.setName(name);
+        replyDto.setTitle(title);
+        replyDto.setContent(content);
+        replyDto.setPassword(password);
+        replyDto.setReRef(reRef);
+        replyDto.setReSeq(reSeq);
+        replyDto.setReLev(reLev);
 
         // BoardService 호출
-        BoardService service = new BoardServiceImpl();
-
         // 성공시 리스트 보여주기
-        if (!service.reply(replydDto)) {
+        BoardService service = new BoardServiceImpl();
+        if (!service.reply(replyDto)) {
             // 실패시 댓글화면 보여주기
             path = "/qReplyView.do?bno=" + bno + "&page=" + page + "&amount=" + amount
                     + "&criteria=" + criteria + "&keyword=" + keyword;
         } else {
             path += "?page=" + page + "&amount=" + amount + "&criteria=" + criteria + "&keyword=" + keyword;
         }
+
         return new ActionForward(path, true);
     }
-
 }

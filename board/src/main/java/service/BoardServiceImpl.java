@@ -36,8 +36,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public boolean reply(BoardDto replydDto) {
-        return dao.reply(replydDto) == 1;
+    public boolean reply(BoardDto replyDto) {
+        return dao.reply(replyDto) == 1;
     }
 
     @Override
@@ -46,7 +46,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDto> serachList(SearchDto searchDto) {
+    public List<BoardDto> searchList(SearchDto searchDto) {
         return dao.getSearchList(searchDto);
     }
 
@@ -64,4 +64,5 @@ public class BoardServiceImpl implements BoardService {
     public boolean deleteAll(int reRef) {
         return dao.deleteAll(reRef) == 1;
     }
+
 }

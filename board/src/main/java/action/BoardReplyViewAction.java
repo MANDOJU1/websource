@@ -5,30 +5,26 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import dto.BoardDto;
-import dto.SearchDto;
 import lombok.AllArgsConstructor;
 import service.BoardService;
 import service.BoardServiceImpl;
 
 @AllArgsConstructor
-public class BoardSearchAction implements Action {
+public class BoardReplyViewAction implements Action {
 
     private String path;
 
     @Override
     public ActionForward execute(HttpServletRequest req) throws Exception {
 
-        SearchDto searchDto = new SearchDto();
-        searchDto.setCriteria(req.getParameter("criteria"));
-        searchDto.setKeyword(req.getParameter("keyword"));
+        int bno = Integer.parseInt(req.getParameter("bno"));
 
-        // BoardService list 호출
+        // BoardService 호출
         BoardService service = new BoardServiceImpl();
-        List<BoardDto> list = service.searchList(searchDto);
+        BoardDto dto = service.read(bno);
 
         // req 결과 담기
-        req.setAttribute("list", list);
-        req.setAttribute("search", searchDto);
+        req.setAttribute("dto", dto);
 
         return new ActionForward(path, false);
     }

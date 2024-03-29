@@ -8,9 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Setter
 @Getter
 public class BoardDto {
@@ -25,5 +25,4 @@ public class BoardDto {
     private int reSeq;
     private int readCount;
     private Date regDate;
-
 }

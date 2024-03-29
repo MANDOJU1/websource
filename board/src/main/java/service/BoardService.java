@@ -5,7 +5,6 @@ import java.util.List;
 import dto.BoardDto;
 import dto.SearchDto;
 
-// dao를 호출해 값을 받는 역할
 public interface BoardService {
     List<BoardDto> list(SearchDto searchDto);
 
@@ -17,11 +16,11 @@ public interface BoardService {
 
     boolean delete(BoardDto deleteDto);
 
-    boolean reply(BoardDto replydDto);
+    boolean reply(BoardDto replyDto);
 
     boolean updateCount(int bno);
 
-    List<BoardDto> serachList(SearchDto searchDto);
+    List<BoardDto> searchList(SearchDto searchDto);
 
     int getTotalRows(String criteria, String keyword);
 

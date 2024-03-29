@@ -13,7 +13,7 @@ document.querySelector(".btn-success").addEventListener("click", (e) => {
   actionForm.querySelector("[name='criteria']").value = "";
   actionForm.querySelector("[name='keyword']").value = "";
 
-  // console.log(actionForm)
+  //console.log(actionForm);
   actionForm.action = "/view/qna_board_write.jsp";
   actionForm.submit();
 });
@@ -22,6 +22,7 @@ document.querySelector(".btn-success").addEventListener("click", (e) => {
 // href 가져오기
 // actionForm 안에 bno 태그 추가
 // actionForm.action = "/qCount.do"
+
 const moves = document.querySelectorAll(".move");
 
 moves.forEach((move) => {

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="../include/header.jsp"%>
+<%@include file="/include/header.jsp"%>
+
 <!-- Main content -->
 <section class="content">
 	<div class="box box-primary">
@@ -8,7 +9,7 @@
 			<h3 class="box-title">Password Check</h3>
 		</div>
 		<div style="height:20px"></div>
-		<form name="pwdCheck" method="post" action='<c:url value= "/qDelete.do"/>'>
+		<form name="pwdCheck" method="post" action='<c:url value="/qDelete.do" />'>
 			<div class="box-body">
 				<div class="form-group">
 					<input type="password" name="password" class="form-control" size="10" maxlength='10'>

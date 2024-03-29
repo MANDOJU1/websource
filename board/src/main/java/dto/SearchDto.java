@@ -6,11 +6,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
 public class SearchDto {
 
     private int page; // 페이지번호
@@ -23,5 +23,4 @@ public class SearchDto {
         this.page = page;
         this.amount = amount;
     }
-
 }
